@@ -40,3 +40,13 @@ nav li a {
   background-color: rgb(0, 0, 0, 0.5);
   z-index: 1;
 }
+.loading{
+  display: none;
+  margin: 10px auto;
+}
+#next {
+  margin-left: 550px;
+  font-size: 16px;
+  margin-bottom: 50px;
+  display: none;
+}
