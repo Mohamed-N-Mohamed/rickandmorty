@@ -17,11 +17,12 @@ async function getcharacters() {
     const response = await fetch(characters);
     const data = await response.json();
     const info = await data.info;
+    
     if (info.next !== null) {
       id++;
       fetchNext(info.next, id);
     } else {
-      UI(data)
+      alert('There is no next page')
     }
     return data;
   } catch (error) {
@@ -42,16 +43,17 @@ async function fetchNext(url, id) {
   const response = await fetch(newURL);
   const data = await response.json();
   //send the data to ui
-  UI(data);
+ UI(data);
 }
 
 //UI to display characters - episodes - locatioon
-function UI(characters) {
+async function UI(characters) {
+  clearUI()
   console.log(characters)
-  const results = characters.results;
+  const results = await characters.results;
+  
   //loop characters
   results.forEach((element) => {
-    console.log(element)
     //create a element
     const div = document.createElement("div");
     div.classList.add("col", "s12", "m4", "card");
@@ -73,6 +75,8 @@ function UI(characters) {
     //add created element to the DOM
     display.appendChild(div);
   });
+
+  
 }
 
 //delay
@@ -92,6 +96,11 @@ function delay(e){
 //call get character
 function cb(){
   delay();
+}
+
+//clear row
+function clearUI(){
+  display.innerHTML = ''
 }
 
 
